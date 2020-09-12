@@ -1,6 +1,7 @@
 void setup (){
   size(800,600);
   background(120, 210, 255);
+  noLoop();
 }
 
 void draw(){
@@ -59,6 +60,7 @@ void draw(){
   
   //tree
     //tree trunk
+    noStroke();
     fill(145, 69, 3);
     rect(130,400,30,150);
     
@@ -73,4 +75,5 @@ void draw(){
     ellipse(175,370,60,60);
     ellipse(145,340,70,70);
     
+    saveFrame("foto.png");
 }
