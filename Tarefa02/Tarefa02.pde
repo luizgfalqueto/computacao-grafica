@@ -6,7 +6,7 @@ void setup (){
 
 void draw(){
   //grass
-  fill(4, 247, 0);
+  fill(50, 247, 0);
   rect(0,550,800,50);
   
   //building
@@ -75,5 +75,20 @@ void draw(){
     ellipse(175,370,60,60);
     ellipse(145,340,70,70);
     
-    saveFrame("foto.png");
+    //apples
+    fill(255,0,0);
+    ellipse(115,379,15,15);
+    ellipse(146,353,15,15);
+    ellipse(170,392,15,15);
+    ellipse(135,405,15,15);
+    ellipse(146,353,15,15);
+    ellipse(110,545,15,15);
+  
+  //clouds
+  fill(255);
+  ellipse(100,100,50,50);
+  ellipse(150,90,80,80);
+  ellipse(200,100,50,50);
+    
+  saveFrame("foto.png");
 }
