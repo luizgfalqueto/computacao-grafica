@@ -1,10 +1,12 @@
 
-float s = second();
+float s = second()+2;
 float m = minute();
 float h = hour();
 
+float cont = s;
+
 float centerX=300;
-float centerY=350;
+float centerY=400;
 float raio=140;
 float raioRelogio = 300;
 float comprimentoPonteiro = raio/15;
@@ -39,6 +41,26 @@ void setup(){
 }
 
 void draw(){
+  
+  //Atualizando relógio a cada 5 minutos
+  if(cont%305==0){
+    s = second()+1;
+    m = minute();
+    h = hour();
+    
+    anguloSegundoInicial =(float)(-Math.PI/2);
+    anguloMinutoInicial = (float)(-Math.PI/2);
+    anguloHoraInicial = (float)(-Math.PI/2);
+    
+    anguloSegundo = (float)(anguloSegundoInicial + (s * Math.PI/30));
+    anguloMinuto = (float)(anguloMinutoInicial + (m * Math.PI/30));
+    anguloHora = (float)(anguloMinuto + radians((60*h-11*m)/2));
+    
+    velocidadeAngularSegundo = (float)(Math.PI/30);
+    velocidadeAngularMinuto = velocidadeAngularSegundo/60;
+    velocidadeAngularHora = (float)(Math.PI/21600);
+  }
+  cont++;
   
   strokeWeight(0);
   fill(140, 140, 140);
@@ -138,10 +160,6 @@ void draw(){
   
   textFont(f,12);
   text("kUaRtZ",centerX,centerY+75);
-  
-  //line(centerX + (comprimentoBase-50)*cos(-PI*4/3),centerY + (comprimentoBase-50)*sin(-PI*4/3),centerX,centerY);
-  //line(centerX + (comprimentoBase-50)*cos(-PI*7/5),centerY + (comprimentoBase-50)*sin(-PI*7/5),centerX,centerY);
-  //line(centerX + (comprimentoBase)*cos(-PI*41/30),centerY + (comprimentoBase)*sin(-PI*41/30),centerX,centerY);
   
   //Bases do relógio
   strokeWeight(1);
