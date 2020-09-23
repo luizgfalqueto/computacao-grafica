@@ -1,18 +1,25 @@
 
-float s = second()+2;
+PFont f;
+
+void setup(){
+  size(600,700);
+  background(255);
+  frameRate(1);
+  f = createFont("Arial",16,true);
+}
+
+float s = second()+2; //Somando dois para compensar o atraso devido a demora do processamento
 float m = minute();
 float h = hour();
 
-float cont = s;
+float cont = s; //Usado para atualizar os ponteiros a cada 5 minutos
 
 float centerX=300;
-float centerY=400;
+float centerY=350;
 float raio=140;
 float raioRelogio = 300;
 float comprimentoPonteiro = raio/15;
 float comprimentoPendulo = raio+250;
-
-float comprimentoBase = 208;
 
 float raioPontosMaiores = 140;
 float raioPontosMenores = 100;
@@ -30,15 +37,6 @@ float anguloHora = (float)(anguloMinuto + radians((60*h-11*m)/2));
 float velocidadeAngularSegundo = (float)(Math.PI/30);
 float velocidadeAngularMinuto = velocidadeAngularSegundo/60;
 float velocidadeAngularHora = (float)(Math.PI/21600);
-
-PFont f;
-
-void setup(){
-  size(600,700);
-  background(255);
-  frameRate(1);
-  f = createFont("Arial",16,true);
-}
 
 void draw(){
   
@@ -160,19 +158,4 @@ void draw(){
   
   textFont(f,12);
   text("kUaRtZ",centerX,centerY+75);
-  
-  //Bases do relógio
-  strokeWeight(1);
-  //Base esquerda
-  fill(110,110,110);
-  triangle(centerX + (comprimentoBase-50)*cos(-PI*4/3),centerY + (comprimentoBase-50)*sin(-PI*4/3),
-  centerX + (comprimentoBase-50)*cos(-PI*7/5),centerY + (comprimentoBase-50)*sin(-PI*7/5),
-  centerX + (comprimentoBase)*cos(-PI*41/30),centerY + (comprimentoBase)*sin(-PI*41/30));
-  circle(centerX + (comprimentoBase)*cos(-PI*41/30),centerY + (comprimentoBase)*sin(-PI*41/30),15);
-  
-  //Base direita
-  triangle(centerX + (comprimentoBase-50)*cos(-PI*4/3-PI*8/30),centerY + (comprimentoBase-50)*sin(-PI*4/3-PI*8/30),
-  centerX + (comprimentoBase-50)*cos(-PI*7/5-PI*8/30),centerY + (comprimentoBase-50)*sin(-PI*7/5-PI*8/30),
-  centerX + (comprimentoBase)*cos(-PI*41/30-PI*8/30),centerY + (comprimentoBase)*sin(-PI*41/30-PI*8/30));
-  circle(centerX + (comprimentoBase)*cos(-PI*41/30-PI*8/30),centerY + (comprimentoBase)*sin(-PI*41/30-PI*8/30),15);
 }  
