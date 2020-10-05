@@ -1,4 +1,4 @@
-PImage img, img1;
+  PImage img, img1;
 
 int maiorValorCor(int pixel[]){
   int m = pixel[0];
