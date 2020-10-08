@@ -1,33 +1,50 @@
-PImage img, imgV, imgH;
+PImage origin;
+PImage destinyV;
+PImage destinyH;
 
 void setup(){
-   size(1000,1000);
+   size(500,649);
    background(255);
-   noLoop();
-   img = loadImage("praia.png");
-   imgH = loadImage("praia.png");
+   origin = loadImage("imagem.png");
+   destinyH = createImage(origin.width, origin.height, RGB);
+   destinyV = createImage(origin.width, origin.height, RGB);
    
-   //int tamanho = img.width*img.height;
-  
-   img.loadPixels();
-   imgH.loadPixels();
-   
-   int l = img.width-1;
-   int c = 0;
-   
-   for(int x=0; x<imgH.width; x++){
-      for(int y=0; y<imgH.height; y++){
-         imgH.set(x,y,img.get(c,l));
-         l-=1;
-         c+=1;
+   origin.loadPixels();
+}
+
+void espelharV(int altura){
+      for (int x = 0; x < origin.width; x++) {
+      
+      for (int y = 0; y < origin.height; y++ ) {
+        color c = origin.get(x,y);
+        destinyV.set(x,altura, c);
+        altura--;
       }
-   }
-   
-   img.updatePixels();
-   imgH.updatePixels();
+        altura = origin.height-1;
+      }  
+}
+
+void espelharH(int largura){
+    for (int x = 0; x < origin.width; x++) {
+    
+    for (int y = 0; y < origin.height; y++ ) {
+      color c = origin.get(x,y);
+      destinyH.set(largura,y, c);
+    }
+    largura--;
+  }
 }
 
 void draw(){
-   image(img,10,10);
-   image(imgH,imgH.width+30,10);
+  espelharV(origin.height-1);
+  destinyV.updatePixels();
+  
+  image(destinyV,0,0);
+  saveFrame("imagemEspelhadaVertical.png");
+  
+  espelharH(origin.width-1);
+  destinyH.updatePixels();
+  
+  image(destinyH,0,0);
+  saveFrame("imagemEspelhadaHorizontal.png");
 }
